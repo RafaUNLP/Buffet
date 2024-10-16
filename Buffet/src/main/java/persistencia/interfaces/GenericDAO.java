@@ -9,7 +9,7 @@ public interface GenericDAO<T> {
 	public boolean delete (long id);
 	public boolean exist (long id);
 	public void persist (T generic);
-	public T find (long id);
+	public T findById (long id);
 	public List<T> findAll();
 	
 }

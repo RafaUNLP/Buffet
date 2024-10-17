@@ -1,13 +1,17 @@
 package persistencia.clases.entidades;
 
+import jakarta.persistence.DiscriminatorColumn;
+import jakarta.persistence.DiscriminatorType;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name="tipo_menu")
 public abstract class Menu extends Item{
-	
-	/*DEFINIR COMO PERSISTIR LA HERENCIA --> llevar todo a las tablas hijas?*/
 
 	@NotNull @DecimalMin(value = "0.0", message = "El precio debe ser al menos 0.0")
     @DecimalMax(value = "99999999.9", message = "El precio no debe ser mayor que 99.999.999,9")

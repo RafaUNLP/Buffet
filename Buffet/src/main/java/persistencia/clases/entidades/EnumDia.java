@@ -1,6 +1,6 @@
 package persistencia.clases.entidades;
 
-/*Probablemente no se persista*/
+/*Probablemente no se persista como tal, sino que en cada columna de un Dia*/
 public enum EnumDia {
 
 	LUNES, MARTES, MIERCOLES, JUEVES, VIERNES, SABADO, DOMINGO;

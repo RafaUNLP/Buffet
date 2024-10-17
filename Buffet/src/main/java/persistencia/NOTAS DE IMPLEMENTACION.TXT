@@ -1,0 +1,5 @@
+1) Los Permisos no se modelaron porque el sistema no requiere tal complejidad
+
+2) Se cambió la subclasificación de Usuarios por un Strategy en el Rol
+
+3) Las interfaces pasaron a ser clases abstractas porque sino no se persisten

@@ -1,15 +1,17 @@
 package persistencia.clases.entidades;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
-import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.validation.constraints.DecimalMax;
 import jakarta.validation.constraints.DecimalMin;
 import jakarta.validation.constraints.NotNull;
 
 public class Compra extends EntidadBase{
 
-	/*FALTA RELACIONAR CON ITEMS*/
 	@NotNull @DecimalMin(value = "0.0", message = "El precio debe ser al menos 0.0")
     @DecimalMax(value = "999999999.9", message = "El precio no debe ser mayor que 999.999.999,9")
 	private double precio;
@@ -17,9 +19,16 @@ public class Compra extends EntidadBase{
 	@NotNull
 	private LocalDate fecha;
 	
-	public Compra () {} //Hibernate y POJOs
+	@OneToMany
+    @JoinColumn(name = "compra_id", referencedColumnName = "id")
+	private List<Item> items;
+	
+	public Compra () {
+		this.items = new ArrayList<Item>();
+	} //Hibernate y POJOs
 
 	public Compra(double precio,LocalDate fecha) {
+		this(); //constructor por defecto
 		this.precio = precio;
 		this.fecha = fecha;
 	}
@@ -38,6 +47,10 @@ public class Compra extends EntidadBase{
 
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
+	}
+	
+	public List<Item> getItem(){
+		return this.items;
 	}
 	
 }

@@ -2,6 +2,9 @@ package persistencia.clases.entidades;
 
 import java.time.LocalDate;
 
+import javax.persistence.JoinColumn;
+
+import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -13,7 +16,9 @@ public class Sugerencia extends EntidadBase{
 	@NotNull
 	private LocalDate fecha;
 	
-	/*FALTA RELACION CON EL CLIENTE*/
+	@ManyToOne
+	@JoinColumn(name="usuario_id",referencedColumnName="id")
+	private Usuario usuario;
 
 	public Sugerencia() {} //Hibernate y POJOs
 	

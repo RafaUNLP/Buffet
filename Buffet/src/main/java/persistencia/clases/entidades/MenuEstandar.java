@@ -1,5 +1,8 @@
 package persistencia.clases.entidades;
 
+import jakarta.persistence.DiscriminatorValue;
+
+@DiscriminatorValue("estandar")
 public class MenuEstandar extends Menu {
 
 	/*usamos MenuEstandar y MenuVegetariano para forzar mediante el tipado que

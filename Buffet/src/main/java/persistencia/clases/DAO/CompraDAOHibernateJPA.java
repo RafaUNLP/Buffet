@@ -25,12 +25,9 @@ public class CompraDAOHibernateJPA extends GenericDAOHibernateJPA<Compra> implem
 	@Override
 	public List<Compra> findBetweenDates(LocalDate inicio, LocalDate fin) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		List<Compra> compras;
+		List<Compra> compras = new ArrayList<Compra>();
 		try {
 			compras = this.findBetweenHelper(em, inicio, fin).getResultList();
-		}
-		catch (NoResultException e){
-			compras = new ArrayList<Compra>();
 		}
 		finally{
 			em.close();
@@ -41,12 +38,9 @@ public class CompraDAOHibernateJPA extends GenericDAOHibernateJPA<Compra> implem
 	@Override
 	public List<Compra> findBetweenDates(LocalDate inicio, LocalDate fin, int maxResultados) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		List<Compra> compras;
+		List<Compra> compras = new ArrayList<Compra>();
 		try {
 			compras = this.findBetweenHelper(em, inicio, fin).setMaxResults(maxResultados).getResultList();
-		}
-		catch (NoResultException e){
-			compras = new ArrayList<Compra>();
 		}
 		finally{
 			em.close();

@@ -4,20 +4,40 @@ import persistencia.interfaces.*;
 
 public class DaoFactory {
 
-	public UsuarioDAO getUsuarioDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getTurnoDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getSugerenciaDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getRolDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getProductoDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getMenuDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getDiaDAO( ) {return null /*el dao de hibernate*/;}
-	
-	public UsuarioDAO getCompraDAO( ) {return null /*el dao de hibernate*/;}
+	public class DAOFactory {
+
+	    public UsuarioDAO getUsuarioDAO() {
+	        return new UsuarioDAOHibernateJPA();
+	    }
+
+	    public TurnoDAO getTurnoDAO() {
+	        return new TurnoDAOHibernateJPA();
+	    }
+
+	    public SugerenciaDAO getSugerenciaDAO() {
+	        return new SugerenciaDAOHibernateJPA();
+	    }
+
+	    public RolDAO getRolDAO() {
+	        return new RolDAOHibernateJPA();
+	    }
+
+	    public ProductoDAO getProductoDAO() {
+	        return new ProductoDAOHibernateJPA();
+	    }
+
+	    public MenuDAO getMenuDAO() {
+	        return new MenuDAOHibernateJPA();
+	    }
+
+	    public DiaDAO getDiaDAO() {
+	        return new DiaDAOHibernateJPA();
+	    }
+
+	    public CompraDAO getCompraDAO() {
+	        return new CompraDAOHibernateJPA();
+	    }
+	}
+
 	
 }

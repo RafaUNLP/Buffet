@@ -8,7 +8,7 @@ import persistencia.interfaces.TurnoDAO;
 
 public class TurnoDAOHibernateJPA extends GenericDAOHibernateJPA<Turno> implements TurnoDAO{
 
-	public TurnoDAOHibernateJPA(Class<Turno> entityClass) {
+	public TurnoDAOHibernateJPA() {
 		super(Turno.class);
 	}
 

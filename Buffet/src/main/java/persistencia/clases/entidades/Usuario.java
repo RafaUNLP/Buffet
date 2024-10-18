@@ -9,8 +9,8 @@ import jakarta.validation.constraints.Size;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Email;
 
+@Table(uniqueConstraints = @UniqueConstraint(columnNames = "dni"))
 public class Usuario extends EntidadBase{
-
 	
 	@NotNull @Size(min=8,max=8,message="El dni debe contar con 8 caracteres numéricos")
 	private String dni;/*conviene que el dni sea un string para validar mejor y poder tener ceros a la izq*/

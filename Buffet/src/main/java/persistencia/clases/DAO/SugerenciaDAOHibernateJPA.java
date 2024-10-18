@@ -36,9 +36,7 @@ public class SugerenciaDAOHibernateJPA extends GenericDAOHibernateJPA<Sugerencia
     public List<Sugerencia> findByDate(LocalDate fecha, int maxResult) {
         EntityManager em = EMF.getEMF().createEntityManager();
         try {
-            return findByDateHelper(em, fecha)
-                   .setMaxResults(maxResult)
-                   .getResultList();
+            return findByDateHelper(em, fecha).setMaxResults(maxResult).getResultList();
         } finally {
             em.close();
         }

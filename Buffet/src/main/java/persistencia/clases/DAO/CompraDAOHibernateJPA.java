@@ -1,9 +1,11 @@
 package persistencia.clases.DAO;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
 import jakarta.persistence.TypedQuery;
 import persistencia.clases.entidades.Compra;
 import persistencia.interfaces.CompraDAO;
@@ -23,17 +25,32 @@ public class CompraDAOHibernateJPA extends GenericDAOHibernateJPA<Compra> implem
 	@Override
 	public List<Compra> findBetweenDates(LocalDate inicio, LocalDate fin) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		List<Compra> compras = this.findBetweenHelper(em, inicio, fin).getResultList();
-		em.close();
-		return compras;
-		
+		List<Compra> compras;
+		try {
+			compras = this.findBetweenHelper(em, inicio, fin).getResultList();
+		}
+		catch (NoResultException e){
+			compras = new ArrayList<Compra>();
+		}
+		finally{
+			em.close();
+		}
+		return compras;		
 	}
 
 	@Override
 	public List<Compra> findBetweenDates(LocalDate inicio, LocalDate fin, int maxResultados) {
 		EntityManager em = EMF.getEMF().createEntityManager();
-		List<Compra> compras = this.findBetweenHelper(em, inicio, fin).setMaxResults(maxResultados).getResultList();
-		em.close();
+		List<Compra> compras;
+		try {
+			compras = this.findBetweenHelper(em, inicio, fin).setMaxResults(maxResultados).getResultList();
+		}
+		catch (NoResultException e){
+			compras = new ArrayList<Compra>();
+		}
+		finally{
+			em.close();
+		}
 		return compras;
 	}
 

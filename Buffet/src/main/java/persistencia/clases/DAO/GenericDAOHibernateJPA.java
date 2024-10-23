@@ -2,8 +2,8 @@ package persistencia.clases.DAO;
 
 import java.util.List;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
+import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
 import persistencia.interfaces.GenericDAO;
 
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T>{

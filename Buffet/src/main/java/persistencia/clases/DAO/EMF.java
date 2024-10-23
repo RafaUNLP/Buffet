@@ -1,7 +1,7 @@
 package persistencia.clases.DAO;
 
-import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.Persistence;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.Persistence;
 
 public class EMF {
 	

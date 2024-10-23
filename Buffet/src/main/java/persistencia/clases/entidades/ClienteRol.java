@@ -1,9 +1,9 @@
 package persistencia.clases.entidades;
 
-import jakarta.persistence.DiscriminatorValue;
+import javax.persistence.DiscriminatorValue;
 
 @DiscriminatorValue("cliente")
-public class CienteRol extends Rol {
+public class ClienteRol extends Rol {
 
 	@Override
 	public boolean puedeSugerir() {

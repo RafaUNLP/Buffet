@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0" xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    
+    <persistence-unit name="miUP" transaction-type="RESOURCE_LOCAL">
+        <!-- Proveedor de persistencia: Hibernate -->
+        <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+        
+        <!-- Clase de las entidades -->
+ 		<class>persistencia.test.Customer</class>
+ 		<class>persistencia.entidades.EntidadBase</class>
+ 		<class>persistencia.entidades.Rol</class>
+ 		<class>persistencia.entidades.AdministradorRol</class>
+ 		<class>persistencia.entidades.ClienteRol</class>
+ 		<class>persistencia.entidades.Compra</class>
+ 		<class>persistencia.entidades.Dia</class>
+ 		<class>persistencia.entidades.EntidadBase</class>
+ 		<class>persistencia.entidades.Item</class>
+ 		<class>persistencia.entidades.MenuEstandar</class>
+ 		<class>persistencia.entidades.MenuVegetariano</class>
+ 		<class>persistencia.entidades.Producto</class>
+ 		<class>persistencia.entidades.ResponsableDeTurno</class>
+ 		<class>persistencia.entidades.Sugerencia</class>
+ 		<class>persistencia.entidades.Usuario</class>
+ 		<class>persistencia.entidades.Turno</class>
+ 
+	<!-- Propiedades de la conexión -->
+        <properties>
+            <!-- Conexión a PostgreSQL -->
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/buffet" />
+            <property name="javax.persistence.jdbc.user" value="root" />
+            <property name="javax.persistence.jdbc.password" value="admin" />
+            
+            <!-- Dialecto de PostgreSQL para Hibernate -->
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+            
+            <!-- Configuración opcional -->
+            <property name="hibernate.hbm2ddl.auto" value="update" /> <!-- Puede ser 'validate', 'update', 'create', 'create-drop' -->
+            <property name="hibernate.show_sql" value="true" /> <!-- Mostrar SQL en consola -->
+            <property name="hibernate.format_sql" value="true" /> <!-- Formatear SQL para legibilidad -->
+        </properties>
+    </persistence-unit>
+</persistence>

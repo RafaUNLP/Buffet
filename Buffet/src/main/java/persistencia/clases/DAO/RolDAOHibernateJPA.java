@@ -1,8 +1,8 @@
 package persistencia.clases.DAO;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.NonUniqueResultException;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.NonUniqueResultException;
 import persistencia.clases.entidades.Rol;
 import persistencia.interfaces.RolDAO;
 

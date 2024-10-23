@@ -1,6 +1,6 @@
 package persistencia.clases.entidades;
 
-import jakarta.persistence.DiscriminatorValue;
+import javax.persistence.DiscriminatorValue;
 
 @DiscriminatorValue("responsable_de_turno")
 public class ResponsableDeTurnoRol extends Rol {

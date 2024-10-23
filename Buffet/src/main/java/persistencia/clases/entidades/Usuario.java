@@ -4,10 +4,10 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import jakarta.persistence.*;
-import jakarta.validation.constraints.Size;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Email;
+import javax.persistence.*;
+import javax.validation.constraints.Size;
+import javax.validation.constraints.NotNull;
+//import javax.validation.constraints.Email;
 
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "dni"))
 public class Usuario extends EntidadBase{
@@ -27,7 +27,7 @@ public class Usuario extends EntidadBase{
 	@NotNull @Size(max=30,message="El apellido no debe superar los 30 caracteres")
 	private String apellido;
 	
-    @NotNull @Email(message = "Correo electrónico inválido")
+    @NotNull //@Email(message = "Correo electrónico inválido")
 	private String email;
     
     @ManyToOne

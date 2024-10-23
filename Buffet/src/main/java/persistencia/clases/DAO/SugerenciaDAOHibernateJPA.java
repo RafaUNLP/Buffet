@@ -6,8 +6,8 @@ import java.util.List;
 import persistencia.clases.entidades.Sugerencia;
 import persistencia.interfaces.SugerenciaDAO;
 
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.TypedQuery;
+import javax.persistence.EntityManager;
+import javax.persistence.TypedQuery;
 import java.time.LocalDate;
 import java.util.List;
 

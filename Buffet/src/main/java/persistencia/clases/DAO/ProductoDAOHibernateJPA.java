@@ -2,7 +2,7 @@ package persistencia.clases.DAO;
 
 import java.util.List;
 
-import jakarta.persistence.EntityManager;
+import javax.persistence.EntityManager;
 import persistencia.clases.entidades.Producto;
 import persistencia.interfaces.ProductoDAO;
 

@@ -1,7 +1,8 @@
 package persistencia.clases.entidades;
 
 import javax.persistence.DiscriminatorValue;
-
+import javax.persistence.Entity;
+@Entity
 @DiscriminatorValue("administrador")
 public class AdministradorRol extends Rol {
 

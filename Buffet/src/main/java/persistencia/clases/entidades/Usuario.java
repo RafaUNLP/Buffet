@@ -8,7 +8,7 @@ import javax.persistence.*;
 import javax.validation.constraints.Size;
 import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Email;
-
+@Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "dni"))
 public class Usuario extends EntidadBase{
 	
@@ -34,7 +34,7 @@ public class Usuario extends EntidadBase{
     @JoinColumn(name = "rol_id", referencedColumnName = "id")
     private Rol rol;
     
-	@OneToMany (mappedBy="usuario_id")
+	@OneToMany //(mappedBy="usuario_id")
 	private Set<Sugerencia> sugerencias;
 	
 	@OneToMany()

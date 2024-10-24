@@ -1,9 +1,12 @@
 package persistencia.clases.entidades;
 
 import java.time.LocalTime;
+
+import javax.persistence.Entity;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Turno extends EntidadBase{
 
 	@NotNull @Size(max=30,message="El nombre no debe superar los 30 caracteres")

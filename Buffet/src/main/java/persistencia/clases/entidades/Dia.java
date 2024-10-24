@@ -1,11 +1,13 @@
 package persistencia.clases.entidades;
 
+import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
+@Entity
 public class Dia extends EntidadBase{
 
 	@NotNull @Enumerated(EnumType.STRING)

@@ -1,10 +1,12 @@
 package persistencia.clases.entidades;
 
+import javax.persistence.Entity;
 import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+@Entity
 public class Producto extends Item{
 
 	@NotNull @Size(max=50,message="El nombre no debe superar los 50 caracteres")

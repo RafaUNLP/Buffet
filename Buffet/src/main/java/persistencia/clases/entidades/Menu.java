@@ -2,6 +2,8 @@ package persistencia.clases.entidades;
 
 import javax.persistence.DiscriminatorColumn;
 import javax.persistence.DiscriminatorType;
+import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.validation.constraints.DecimalMax;
@@ -9,8 +11,10 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(discriminatorType = DiscriminatorType.STRING, name="tipo_menu")
+
 public abstract class Menu extends Item{
 
 	@NotNull @DecimalMin(value = "0.0", message = "El precio debe ser al menos 0.0")

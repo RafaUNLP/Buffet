@@ -11,7 +11,7 @@ import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 
-
+@Entity
 public class Compra extends EntidadBase{
 
 	@NotNull @DecimalMin(value = "0.0", message = "El precio debe ser al menos 0.0")

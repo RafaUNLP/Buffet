@@ -1,7 +1,9 @@
 package persistencia.clases.entidades;
 
 import javax.persistence.DiscriminatorValue;
+import javax.persistence.Entity;
 
+@Entity
 @DiscriminatorValue("estandar")
 public class MenuEstandar extends Menu {
 

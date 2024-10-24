@@ -36,8 +36,7 @@ public class UsuarioDAOHibernateJPA extends GenericDAOHibernateJPA<Usuario> impl
     public List<Usuario> findByRol(Rol rol) {
         EntityManager em = EMF.getEMF().createEntityManager();
         try {
-            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.rol = :rol ORDER BY u.nombre ASC"
-            		, this.entityClass);
+            TypedQuery<Usuario> query = em.createQuery("SELECT u FROM Usuario u WHERE u.rol.nombre = :rol ORDER BY u.nombre ASC", this.entityClass);
             query.setParameter("rol", rol.getNombre());
             return query.getResultList();
         } finally {

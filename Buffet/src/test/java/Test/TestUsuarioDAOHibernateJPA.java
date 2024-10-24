@@ -1,12 +1,12 @@
 package Test;
 
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import persistencia.clases.DAO.EMF;
+import persistencia.clases.DAO.RolDAOHibernateJPA;
 import persistencia.clases.DAO.UsuarioDAOHibernateJPA;
-import persistencia.clases.entidades.*; // Subclase concreta de Rol
+import persistencia.clases.entidades.*; 
 import persistencia.clases.entidades.Rol;
 import persistencia.clases.entidades.Usuario;
 
@@ -20,16 +20,18 @@ class TestUsuarioDAOHibernateJPA {
 
     private EntityManager em;
     private UsuarioDAOHibernateJPA usuarioDAO;
+    private  RolDAOHibernateJPA rolDAO;
 
     @BeforeEach
     void setUp() {
         em = EMF.getEMF().createEntityManager();
         usuarioDAO = new UsuarioDAOHibernateJPA();
+        rolDAO = new RolDAOHibernateJPA();           
     }
 
     @AfterEach
     void tearDown() {
-        // Limpia la base de datos tras cada prueba
+        // Limpia la base de datos despues de  cada prueba
         EntityTransaction tx = em.getTransaction();
         tx.begin();
         em.createQuery("DELETE FROM Usuario").executeUpdate();
@@ -45,11 +47,9 @@ class TestUsuarioDAOHibernateJPA {
         admin.setNombre("administrador");
         Usuario usuario = new Usuario("12345678", "password123", "imagen.jpg", "Juan", "Perez", "juan@example.com");
         usuario.setRol(admin);
-
-        em.getTransaction().begin();
-        em.persist(admin);
+        
+        rolDAO.persist(admin);
         usuarioDAO.persist(usuario);
-        em.getTransaction().commit();
 
         // Verificar que el usuario fue persistido correctamente
         Usuario usuarioPersistido = usuarioDAO.findById(usuario.getId());
@@ -67,10 +67,8 @@ class TestUsuarioDAOHibernateJPA {
         Usuario usuario = new Usuario("87654321", "password321", "imagen2.jpg", "Maria", "Lopez", "maria@example.com");
         usuario.setRol(admin);
 
-        em.getTransaction().begin();
-        em.persist(admin);
-        usuarioDAO.persist(usuario);
-        em.getTransaction().commit();
+        rolDAO.persist(admin);
+        usuarioDAO.persist(usuario); 
 
         // Verificar que el usuario se puede encontrar por DNI
         Usuario usuarioEncontrado = usuarioDAO.findByDni("87654321");
@@ -97,19 +95,16 @@ class TestUsuarioDAOHibernateJPA {
         Usuario usuario2 = new Usuario("87654321", "password321", "imagen2.jpg", "Maria", "Lopez", "maria@example.com");
         usuario1.setRol(admin);
         usuario2.setRol(cliente);
-
-        em.getTransaction().begin();
-        em.persist(admin);
-        em.persist(cliente);
+        rolDAO.persist(admin);
+        rolDAO.persist(cliente);
         usuarioDAO.persist(usuario1);
-        usuarioDAO.persist(usuario2);
-        em.getTransaction().commit();
+        usuarioDAO.persist(usuario2);   
 
         // Buscar usuarios por rol 'Administrador'
         List<Usuario> usuariosAdmin = usuarioDAO.findByRol(admin);
         assertEquals(1, usuariosAdmin.size());
         assertEquals("Juan", usuariosAdmin.get(0).getNombre());
-
+        
         // Buscar usuarios por rol 'Cliente'
         List<Usuario> usuariosCliente = usuarioDAO.findByRol(cliente);
         assertEquals(1, usuariosCliente.size());
@@ -126,13 +121,11 @@ class TestUsuarioDAOHibernateJPA {
         usuario1.setRol(admin);
         usuario2.setRol(admin);
         usuario3.setRol(admin);
-
-        em.getTransaction().begin();
-        em.persist(admin);
+        
+        rolDAO.persist(admin);
         usuarioDAO.persist(usuario1);
         usuarioDAO.persist(usuario2);
         usuarioDAO.persist(usuario3);
-        em.getTransaction().commit();
 
         // Buscar todos los usuarios ordenados por nombre ascendente
         List<Usuario> usuariosOrdenados = usuarioDAO.findAllOrderedByNameAsc();
@@ -150,16 +143,12 @@ class TestUsuarioDAOHibernateJPA {
         Usuario usuario = new Usuario("12345678", "password123", "imagen.jpg", "Juan", "Perez", "juan@example.com");
         usuario.setRol(admin);
 
-        em.getTransaction().begin();
-        em.persist(admin);
+        rolDAO.persist(admin);
         usuarioDAO.persist(usuario);
-        em.getTransaction().commit();
 
         // Eliminar el usuario
-        em.getTransaction().begin();
         usuarioDAO.delete(usuario.getId());
-        em.getTransaction().commit();
-
+        
         // Verificar que el usuario fue eliminado
         Usuario usuarioEliminado = usuarioDAO.findById(usuario.getId());
         assertNull(usuarioEliminado);

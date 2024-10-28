@@ -16,7 +16,7 @@ public class MenuDAOHibernateJPA extends GenericDAOHibernateJPA<Menu> implements
 	public List<Menu> findVegetarians() {
 		EntityManager em = EMF.getEMF().createEntityManager();
 		try {
-			return em.createQuery("SELECT i FROM Item i WHERE i.dtype = 'vegetarian'",this.entityClass).getResultList();
+			return em.createQuery("FROM MenuVegetariano",this.entityClass).getResultList();
 		}
 		finally {
 			em.close();
@@ -27,7 +27,7 @@ public class MenuDAOHibernateJPA extends GenericDAOHibernateJPA<Menu> implements
 	public List<Menu> findStandards() {
 		EntityManager em = EMF.getEMF().createEntityManager();
 		try {
-			return em.createQuery("SELECT i FROM Item i WHERE i.tipo_menu = estandar",this.entityClass).getResultList();
+			return em.createQuery("FROM MenuEstandar",this.entityClass).getResultList();
 		}
 		finally {
 			em.close();

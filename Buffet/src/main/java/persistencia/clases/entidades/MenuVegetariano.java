@@ -1,10 +1,9 @@
 package persistencia.clases.entidades;
 
-import javax.persistence.DiscriminatorValue;
 import javax.persistence.Entity;
 
 @Entity
-@DiscriminatorValue("vegetariano")
+//NOTA: su Id es tambien la FK a la tabla Menu
 public class MenuVegetariano extends Menu {
 
 	/*usamos MenuVegetariano y MenuEstandar para forzar mediante el tipado que

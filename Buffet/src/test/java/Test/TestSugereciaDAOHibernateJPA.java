@@ -8,6 +8,7 @@ import javax.persistence.EntityTransaction;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterEach;
@@ -55,16 +56,21 @@ public class TestSugereciaDAOHibernateJPA {
 
     @Test
     public void testFindByDate() {
+    	assertEquals(0,sugerenciaDAO.findByDate(LocalDate.of(1999, 10, 23)).size());
+    	
         List<Sugerencia> sugerencias = sugerenciaDAO.findByDate(LocalDate.of(2024, 10, 23));
-        assertNotNull(sugerencias);
         assertEquals(1, sugerencias.size());
         assertEquals("Texto de ejemplo 1", sugerencias.get(0).getTexto());
+        
+        sugerencias = sugerenciaDAO.findByDate(LocalDate.of(2024, 10, 22));
+        assertEquals(2, sugerencias.size());
     }
 
     @Test
     public void testFindByDateWithLimit() {
-        List<Sugerencia> sugerencias = sugerenciaDAO.findByDate(LocalDate.of(2024, 10, 23), 1);
-        assertNotNull(sugerencias);
+    	assertEquals(0,sugerenciaDAO.findByDate(LocalDate.of(1999, 10, 23), 99).size());
+    	
+        List<Sugerencia> sugerencias = sugerenciaDAO.findByDate(LocalDate.of(2024, 10, 22), 1);//hay 2 con esa fecha
         assertEquals(1, sugerencias.size());
     }
 
@@ -74,7 +80,7 @@ public class TestSugereciaDAOHibernateJPA {
         List<Sugerencia> sugerencias = sugerenciaDAO.findAllOrderedByDateAsc();
         assertNotNull(sugerencias);
         assertEquals(3, sugerencias.size());
-        assertEquals("Texto de ejemplo 2", sugerencias.get(0).getTexto()); // Debe estar en orden ascendente fecha exacta ordena por texto CREO
+        assertEquals("Texto de ejemplo 2", sugerencias.get(0).getTexto()); // Debe estar en orden ascendente, si la fecha es exacta ordena por texto
     }
 
     @Test

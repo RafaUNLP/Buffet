@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test;
 
 import persistencia.clases.DAO.EMF;
 import persistencia.clases.DAO.MenuDAOHibernateJPA;
-import persistencia.clases.entidades.Item;
 import persistencia.clases.entidades.Menu;
 import persistencia.clases.entidades.MenuVegetariano;
 import persistencia.clases.entidades.MenuEstandar;
@@ -24,14 +23,12 @@ class TestMenuDAOHibernateJPA {
 
     @BeforeEach
     void setUp() {
-        // Inicializa el EntityManager y el DAO antes de cada prueba
         em = EMF.getEMF().createEntityManager();
         menuDAO = new MenuDAOHibernateJPA();
     }
 
     @AfterEach
     void tearDown() {
-        // Cierra el EntityManager y limpia la base de datos después de cada prueba
         em.getTransaction().begin();
         em.createQuery("DELETE FROM Item").executeUpdate();
         em.getTransaction().commit();
@@ -41,7 +38,7 @@ class TestMenuDAOHibernateJPA {
     @Test
     void testPersistMenu() {
         // Test para persistir un Menu en la base de datos
-        Menu menuVegetariano = new MenuVegetariano();
+        MenuVegetariano menuVegetariano = new MenuVegetariano();
         menuVegetariano.setNombre("Ensalada de verduras");
 
         em.getTransaction().begin();
